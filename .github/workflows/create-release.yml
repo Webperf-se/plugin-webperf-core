@@ -41,12 +41,11 @@ jobs:
         uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          tag: "${{ env.NEW_VERSION }}"
+          version: "${{ env.NEW_VERSION }}"
           dry-run: true
       - name: NPM Release (Latest)
         uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          tag: "latest"
           dry-run: true
   
