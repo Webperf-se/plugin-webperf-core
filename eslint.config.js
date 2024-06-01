@@ -4,7 +4,7 @@ import prettier from 'eslint-plugin-prettier';
 import unicorn from 'eslint-plugin-unicorn';
 
 export default {
-  env: {
+  globals: {
     node: true,
     es6: true
   },
