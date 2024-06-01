@@ -46,16 +46,14 @@
     "eslint-plugin-unicorn": "45.0.2",
     "husky": "3.0.4",
     "lint-staged": "9.2.4",
-    "prettier": "1.18.2",
-    "pug-lint": "2.6.0"
+    "prettier": "1.18.2"
   },
   "dependencies": {
     "@sitespeed.io/plugin": "0.0.6"
   },
   "scripts": {
-    "lint": "eslint . && npm run pug-lint",
+    "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
-    "pug-lint": "pug-lint lighthouse.pug"
+    "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check"
   }
 }
