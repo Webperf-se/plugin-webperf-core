@@ -4,9 +4,11 @@ import prettier from 'eslint-plugin-prettier';
 import unicorn from 'eslint-plugin-unicorn';
 
 export default {
-  globals: {
-    node: true,
-    es6: true
+  languageOptions: {
+    globals: {
+      node: true,
+      es6: true
+    }
   },
   parserOptions: {
     ecmaVersion: 'latest',
@@ -36,6 +38,6 @@ export default {
     'unicorn/filename-case': 0,
     'unicorn/prevent-abbreviations': 0,
     'unicorn/no-array-reduce': 0,
-    'unicorn/prefer-spread':0
+    'unicorn/prefer-spread': 0
   }
 }
