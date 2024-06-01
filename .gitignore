@@ -1,0 +1,7 @@
+.mypy_cache/
+.DS_Store
+node_modules
+sitespeed-result
+package-lock.json
+tmp
+cache

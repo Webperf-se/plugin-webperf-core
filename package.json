@@ -1,0 +1,61 @@
+{
+  "name": "@webperf.se/webperf-sitespeedio-plugin",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "WebPerf plugin for sitespeed.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/7h3Rabbit/webperf-sitespeedio-plugin.git"
+  },
+  "keywords": [
+    "sitespeed.io",
+    "lighthouse",
+    "webperf",
+    "webperf_core",
+    "webperf-core",
+    "perfmatters",
+    "a11y"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/7h3Rabbit/webperf-sitespeedio-plugin/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "engines": {
+    "node": "20.x"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:fix",
+      "prettier --write --single-quote",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "8.35.0",
+    "eslint-config-prettier": "6.1.0",
+    "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-unicorn": "45.0.2",
+    "husky": "3.0.4",
+    "lint-staged": "9.2.4",
+    "prettier": "1.18.2",
+    "pug-lint": "2.6.0"
+  },
+  "dependencies": {
+    "@sitespeed.io/plugin": "0.0.6"
+  },
+  "scripts": {
+    "lint": "eslint . && npm run pug-lint",
+    "lint:fix": "eslint . --fix",
+    "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
+    "pug-lint": "pug-lint lighthouse.pug"
+  }
+}
