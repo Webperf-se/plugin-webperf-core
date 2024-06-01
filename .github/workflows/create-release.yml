@@ -31,9 +31,22 @@ jobs:
       - name: Generate new release version
         id: newversion
         run: python tools/release.py -l "${{ steps.changes.outputs.last-tag }}"
-      - name: Release
+      - name: GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: "${{ env.NEW_VERSION }}"
           make_latest: "true"
           generate_release_notes: true
+      - name: NPM Release (version specific)
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: "${{ env.NEW_VERSION }}"
+          dry-run: true
+      - name: NPM Release (Latest)
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: "latest"
+          dry-run: true
+  
