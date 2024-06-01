@@ -1,4 +1,3 @@
-
 import { SitespeedioPlugin } from '@sitespeed.io/plugin';
 
 export default class WebPerfPlugin extends SitespeedioPlugin {
@@ -73,7 +72,7 @@ export default class WebPerfPlugin extends SitespeedioPlugin {
           undefined,
           this.alias[url]
         );
-        break
+        break;
       }
     }
   }
