@@ -24,6 +24,18 @@ export default class WebPerfPlugin extends SitespeedioPlugin {
         this.usingBrowsertime = true;
         break;
       }
+      case 'coach.run': {
+        super.log(`processMessage type: ${message.type}, storing coach.json`);
+        const url = message.url;
+        await this.storageManager.writeDataForUrl(
+          JSON.stringify(message.data),
+          'coach.json',
+          url,
+          undefined,
+          this.alias[url]
+        );
+        break;
+      }
 
       // If we have an alias for an URL we browsertime will tell
       // us and we can use that alias for the URL
