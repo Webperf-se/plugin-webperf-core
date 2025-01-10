@@ -36,6 +36,18 @@ export default class WebPerfPlugin extends SitespeedioPlugin {
         );
         break;
       }
+      case 'sustainable.run': {
+        super.log(`processMessage type: ${message.type}, storing sustainable.json`);
+        const url = message.url;
+        await this.storageManager.writeDataForUrl(
+          JSON.stringify(message.data),
+          'sustainable.json',
+          url,
+          undefined,
+          this.alias[url]
+        );
+        break;
+      }
 
       // If we have an alias for an URL we browsertime will tell
       // us and we can use that alias for the URL
