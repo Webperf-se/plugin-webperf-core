@@ -1,8 +1,13 @@
 import { SitespeedioPlugin } from '@sitespeed.io/plugin';
 
 export default class WebPerfPlugin extends SitespeedioPlugin {
-  // Requires https://github.com/sitespeedio/plugin-lighthouse to be included also
-  // node node_modules/sitespeed.io/bin/sitespeed.js --plugins.add ../../../@sitespeed.io/plugin-lighthouse/index.js --plugins.add ../../../@sitespeed.io/plugin-webperf/index.js https://webperf.se/ -n 1 --mobile
+  // Requires
+  //  "@sitespeed.io/plugin-lighthouse": "12.1.0",
+  //  "@sitespeed.io/plugin": "1.0.0",    
+  //  "webperf-sitespeedio-plugin": "2025.1.0"
+  // Command
+  // node node_modules/sitespeed.io/bin/sitespeed.js --plugins.add ../../../@sitespeed.io/plugin-lighthouse/index.js --plugins.add ../../../webperf-sitespeedio-plugin/index.js -n 1 --mobile https://webperf.se/
+  // node node_modules/sitespeed.io/bin/sitespeed.js --plugins.add ../../../webperf-sitespeedio-plugin/index.js -n 1 https://webperf.se/
   constructor(options, context, queue) {
     super({ name: 'webperf-sitespeedio-plugin', options, context, queue });
   }
@@ -18,6 +23,7 @@ export default class WebPerfPlugin extends SitespeedioPlugin {
     this.storageManager = super.getStorageManager();
   }
   async processMessage(message) {
+    super.log(`processMessage type: ${message.type}`);
     switch (message.type) {
       case 'browsertime.setup': {
         // We know we will use Browsertime so we wanna keep track of Browseertime summaries
@@ -46,6 +52,11 @@ export default class WebPerfPlugin extends SitespeedioPlugin {
           undefined,
           this.alias[url]
         );
+        break;
+      }
+      case 'browsertime.har': {
+        // super.log(`processMessage type: ${message.type}, storing browsertime.har`);
+        // super.log(`processMessage type: ${message.type}, ${JSON.stringify(message.data)}`);
         break;
       }
 
