@@ -23,7 +23,7 @@ export default class WebPerfPlugin extends SitespeedioPlugin {
     this.storageManager = super.getStorageManager();
   }
   async processMessage(message) {
-    super.log(`processMessage type: ${message.type}`);
+    // super.log(`processMessage type: ${message.type}`);
     switch (message.type) {
       case 'browsertime.setup': {
         // We know we will use Browsertime so we wanna keep track of Browseertime summaries
@@ -31,7 +31,7 @@ export default class WebPerfPlugin extends SitespeedioPlugin {
         break;
       }
       case 'coach.run': {
-        super.log(`processMessage type: ${message.type}, storing coach.json`);
+        // super.log(`processMessage type: ${message.type}, storing coach.json`);
         const url = message.url;
         await this.storageManager.writeDataForUrl(
           JSON.stringify(message.data),
@@ -43,7 +43,7 @@ export default class WebPerfPlugin extends SitespeedioPlugin {
         break;
       }
       case 'sustainable.run': {
-        super.log(`processMessage type: ${message.type}, storing sustainable.json`);
+        // super.log(`processMessage type: ${message.type}, storing sustainable.json`);
         const url = message.url;
         await this.storageManager.writeDataForUrl(
           JSON.stringify(message.data),
