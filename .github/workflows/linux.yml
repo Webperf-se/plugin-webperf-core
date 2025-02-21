@@ -29,6 +29,16 @@ jobs:
       run: sitespeed.io --plugins.add ./index.js --plugins.remove browsertime https://www.sitespeed.io/
     - name: Run tests using Lighthouse plugin as mobile
       run: sitespeed.io --plugins.add ./index.js --plugins.remove browsertime https://www.sitespeed.io/ --mobile
+    - name: Run tests to illustrate maxLoadTime
+      run: sitespeed.io --maxLoadTime 30000 -b firefox --firefox.includeResponseBodies all --firefox.preference privacy.trackingprotection.enabled:false --firefox.preference privacy.donottrackheader.enabled:false --firefox.preference browser.safebrowsing.malware.enabled:false --firefox.preference browser.safebrowsing.phishing.enabled:false --firefox.preference security.tls.version.min:1 --firefox.preference security.tls.version.max:1 --pageCompleteCheckNetworkIdle true --browsertime.screenshot false --screenshot false --screenshotLCP false --browsertime.screenshotLCP false --videoParams.createFilmstrip false --visualMetrics false --visualMetricsPerceptual false --visualMetricsContentful false --browsertime.headless true --silent true --utc true -n 1
+
+
+    # - name: Run tests using Lighthouse plugin as mobile
+    #   run: sitespeed.io --plugins.remove assets --plugins.remove budget --plugins.remove coach --plugins.remove pagexray --plugins.remove thirdparty --plugins.remove domains --maxLoadTime 30000 --shm-size=1g -b firefox --firefox.includeResponseBodies all --firefox.preference privacy.trackingprotection.enabled:false --firefox.preference privacy.donottrackheader.enabled:false --firefox.preference browser.safebrowsing.malware.enabled:false --firefox.preference browser.safebrowsing.phishing.enabled:false --firefox.preference security.tls.version.min:1 --firefox.preference security.tls.version.max:1 --pageCompleteCheckNetworkIdle true --plugins.remove screenshot --plugins.remove html --plugins.remove metrics --browsertime.screenshot false --screenshot false --screenshotLCP false --browsertime.screenshotLCP false --videoParams.createFilmstrip false --visualMetrics false --visualMetricsPerceptual false --visualMetricsContentful false --browsertime.headless true --silent true --utc true -n 1
+
+
+
+      
     # - name: Run tests with configuration file
     #   run: sitespeed.io --plugins.add ./index.js --plugins.remove browsertime https://www.sitespeed.io/ --lighthouse.config ./test/config.js
     # - name: Run tests with flag file
