@@ -26,9 +26,9 @@ jobs:
     - name: Show sitespeed.io version
       run: sitespeed.io --version
     - name: Run tests using Lighthouse plugin
-      run: sitespeed.io --plugins.add ./index.js --plugins.remove browsertime https://www.sitespeed.io/
+      run: sitespeed.io --plugins.add ./lib/index.js --plugins.remove browsertime https://www.sitespeed.io/
     - name: Run tests using Lighthouse plugin as mobile
-      run: sitespeed.io --plugins.add ./index.js --plugins.remove browsertime https://www.sitespeed.io/ --mobile
+      run: sitespeed.io --plugins.add ./lib/index.js --plugins.remove browsertime https://www.sitespeed.io/ --mobile
     - name: Run tests to illustrate maxLoadTime
       run: sitespeed.io --maxLoadTime 30000 -b firefox --firefox.includeResponseBodies all --firefox.preference privacy.trackingprotection.enabled:false --firefox.preference privacy.donottrackheader.enabled:false --firefox.preference browser.safebrowsing.malware.enabled:false --firefox.preference browser.safebrowsing.phishing.enabled:false --firefox.preference security.tls.version.min:1 --firefox.preference security.tls.version.max:1 --pageCompleteCheckNetworkIdle true --browsertime.screenshot false --screenshot false --screenshotLCP false --browsertime.screenshotLCP false --videoParams.createFilmstrip false --visualMetrics false --visualMetricsPerceptual false --visualMetricsContentful false --browsertime.headless true --silent true --utc true -n 1 https://webperf.se
 
