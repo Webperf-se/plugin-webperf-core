@@ -9,7 +9,7 @@
   "description": "WebPerf plugin for sitespeed.io",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/7h3Rabbit/webperf-sitespeedio-plugin.git"
+    "url": "git+https://github.com/Webperf-se/plugin-webperf-core.git"
   },
   "keywords": [
     "sitespeed.io",
