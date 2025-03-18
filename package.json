@@ -1,6 +1,6 @@
 {
-  "name": "webperf-sitespeedio-plugin",
-  "version": "2025.3.3",
+  "name": "plugin-webperf-plugin",
+  "version": "2025.3.0",
   "type": "module",
   "exports": "./lib/index.js",
   "publishConfig": {
@@ -22,7 +22,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/7h3Rabbit/webperf-sitespeedio-plugin/issues"
+    "url": "https://github.com/Webperf-se/plugin-webperf-core/issues"
   },
   "husky": {
     "hooks": {
@@ -30,7 +30,7 @@
     }
   },
   "engines": {
-    "node": "20.x"
+    "node": ">=20.x"
   },
   "lint-staged": {
     "*.js": [
