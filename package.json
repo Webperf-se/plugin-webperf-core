@@ -1,6 +1,6 @@
 {
   "name": "webperf-sitespeedio-plugin",
-  "version": "2025.3.2",
+  "version": "2025.3.3",
   "type": "module",
   "exports": "./lib/index.js",
   "publishConfig": {
