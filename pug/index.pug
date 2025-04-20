@@ -17,6 +17,41 @@ if pluginData.issues && Object.keys(pluginData.issues).length > 0
     -     return b.subIssues.length - a.subIssues.length;
     - });
 
+    // Calculate grouped issues and ratings
+    - let groupedIssues = {};
+    - let overallRating = 100;
+    - pluginData.issues.forEach(issue => {
+    -     if (!groupedIssues[issue.category]) {
+    -         groupedIssues[issue.category] = 100;
+    -     }
+    -     if (issue.severity === 'critical') {
+    -         groupedIssues[issue.category] -= 25;
+    -         overallRating -= 25;
+    -     } else if (issue.severity === 'error') {
+    -         groupedIssues[issue.category] -= 10;
+    -         overallRating -= 10;
+    -     } else if (issue.severity === 'warning') {
+    -         groupedIssues[issue.category] -= 1;
+    -         overallRating -= 1;
+    -     }
+    - });
+
+    h3 Summary
+    //- p Overall Rating: #{Math.max(overallRating, 0)}
+    table
+        thead
+            tr
+                th Category
+                th Rating
+        tbody
+            tr
+                td Overall
+                td= Math.max(overallRating, 0)
+            each rating, category in groupedIssues
+                tr
+                    td= category
+                    td= Math.max(rating, 0)
+
     h3 Issues
     table
         thead
