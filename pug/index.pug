@@ -26,18 +26,17 @@ if pluginData.issues && Object.keys(pluginData.issues).length > 0
     -     }
     -     if (issue.severity === 'critical') {
     -         groupedIssues[issue.category] -= 25;
-    -         overallRating -= 25;
+    -         overallRating -= 12.5;
     -     } else if (issue.severity === 'error') {
     -         groupedIssues[issue.category] -= 10;
-    -         overallRating -= 10;
+    -         overallRating -= 5;
     -     } else if (issue.severity === 'warning') {
     -         groupedIssues[issue.category] -= 1;
-    -         overallRating -= 1;
+    -         overallRating -= 0.5;
     -     }
     - });
 
-    h3 Summary
-    //- p Overall Rating: #{Math.max(overallRating, 0)}
+    h3 Page Summary
     table
         thead
             tr
@@ -46,13 +45,17 @@ if pluginData.issues && Object.keys(pluginData.issues).length > 0
         tbody
             tr
                 td Overall
-                td= Math.max(overallRating, 0)
+                td
+                    - let overallClass = overallRating > 80 ? 'label ok' : (overallRating > 50 ? 'label warning' : 'label error');
+                    span(class=overallClass)= Math.max(overallRating, 0)
             each rating, category in groupedIssues
                 tr
-                    td= category
-                    td= Math.max(rating, 0)
+                    td= category.charAt(0).toUpperCase() + category.slice(1)
+                    td
+                        - let ratingClass = rating > 80 ? 'label ok' : (rating > 50 ? 'label warning' : 'label error');
+                        span(class=ratingClass)= Math.max(rating, 0)
 
-    h3 Issues
+    h3 Page Issues
     table
         thead
             tr
