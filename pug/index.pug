@@ -17,7 +17,45 @@ if pluginData.issues && Object.keys(pluginData.issues).length > 0
     -     return b.subIssues.length - a.subIssues.length;
     - });
 
-    h3 Issues
+    // Calculate grouped issues and ratings
+    - let groupedIssues = {};
+    - let overallRating = 100;
+    - pluginData.issues.forEach(issue => {
+    -     if (!groupedIssues[issue.category]) {
+    -         groupedIssues[issue.category] = 100;
+    -     }
+    -     if (issue.severity === 'critical') {
+    -         groupedIssues[issue.category] -= 25;
+    -         overallRating -= 12.5;
+    -     } else if (issue.severity === 'error') {
+    -         groupedIssues[issue.category] -= 10;
+    -         overallRating -= 5;
+    -     } else if (issue.severity === 'warning') {
+    -         groupedIssues[issue.category] -= 1;
+    -         overallRating -= 0.5;
+    -     }
+    - });
+
+    h3 Page Summary
+    table
+        thead
+            tr
+                th Category
+                th Rating
+        tbody
+            tr
+                td Overall
+                td
+                    - let overallClass = overallRating > 80 ? 'label ok' : (overallRating > 50 ? 'label warning' : 'label error');
+                    span(class=overallClass)= Math.max(overallRating, 0)
+            each rating, category in groupedIssues
+                tr
+                    td= category.charAt(0).toUpperCase() + category.slice(1)
+                    td
+                        - let ratingClass = rating > 80 ? 'label ok' : (rating > 50 ? 'label warning' : 'label error');
+                        span(class=ratingClass)= Math.max(rating, 0)
+
+    h3 Page Issues
     table
         thead
             tr
