@@ -9,51 +9,19 @@ p This plugin is to combine many plugins into one place and give you hint on wha
             span #{name} v#{version}, 
 
 if pluginData.issues && Object.keys(pluginData.issues).length > 0
-    - const severityOrder = { critical: 4, error: 3, warning: 2, info: 1, resolved: 0 };
-    - let sortedIssues = pluginData.issues.sort((a, b) => {
-    -     if (severityOrder[b.severity] !== severityOrder[a.severity]) {
-    -         return severityOrder[b.severity] - severityOrder[a.severity];
-    -     }
-    -     return b.subIssues.length - a.subIssues.length;
-    - });
-
-    // Calculate grouped issues and ratings
-    - let groupedIssues = {};
-    - let overallRating = 100;
-    - pluginData.issues.forEach(issue => {
-    -     if (!groupedIssues[issue.category]) {
-    -         groupedIssues[issue.category] = 100;
-    -     }
-    -     if (issue.severity === 'critical') {
-    -         groupedIssues[issue.category] -= 25;
-    -         overallRating -= 12.5;
-    -     } else if (issue.severity === 'error') {
-    -         groupedIssues[issue.category] -= 10;
-    -         overallRating -= 5;
-    -     } else if (issue.severity === 'warning') {
-    -         groupedIssues[issue.category] -= 1;
-    -         overallRating -= 0.5;
-    -     }
-    - });
-
-    h3 Page Summary
+    h3 Page Score
     table
         thead
             tr
                 th Category
-                th Rating
+                th Score
         tbody
-            tr
-                td Overall
-                td
-                    - let overallClass = overallRating > 80 ? 'label ok' : (overallRating > 50 ? 'label warning' : 'label error');
-                    span(class=overallClass)= Math.max(overallRating, 0)
-            each rating, category in groupedIssues
+            each score, category in pluginData.score
                 tr
                     td= category.charAt(0).toUpperCase() + category.slice(1)
                     td
-                        - let ratingClass = rating > 80 ? 'label ok' : (rating > 50 ? 'label warning' : 'label error');
-                        span(class=ratingClass)= Math.max(rating, 0)
+                        - let scoreClass = score > 80 ? 'label ok' : (score > 50 ? 'label warning' : 'label error');
+                        span(class=scoreClass)= Math.max(score, 0)
 
     h3 Page Issues
     table
@@ -64,7 +32,7 @@ if pluginData.issues && Object.keys(pluginData.issues).length > 0
                 th Sub Issue Count
                 th Severity
         tbody
-            each value in sortedIssues
+            each value in pluginData.issues
                 tr
                     td
                         a(href=`#rule-${value.rule}`)= value.rule
@@ -83,7 +51,7 @@ if pluginData.issues && Object.keys(pluginData.issues).length > 0
                             = value.severity
 
     // Add tables for each rule
-    each value in sortedIssues
+    each value in pluginData.issues
         h4(id=`rule-${value.rule}`)= `${value.rule}`
         p 
             strong Category:
