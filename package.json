@@ -52,7 +52,8 @@
     "typescript": "5.7.2"
   },
   "dependencies": {
-    "@sitespeed.io/plugin": "1.0.0"
+    "@sitespeed.io/plugin": "1.0.0",
+    "@sitespeed.io/log": "0.2.6"
   },
   "scripts": {
     "test": "ava",
