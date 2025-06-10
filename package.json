@@ -24,44 +24,23 @@
   "bugs": {
     "url": "https://github.com/Webperf-se/plugin-webperf-core/issues"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "engines": {
     "node": ">=20.x"
   },
-  "lint-staged": {
-    "*.js": [
-      "npm run lint:fix",
-      "prettier --write --single-quote",
-      "git add"
-    ]
-  },
   "devDependencies": {
     "eslint": "9.22.0",
-    "eslint-config-prettier": "10.1.1",
-    "eslint-plugin-prettier": "5.2.3",
-    "eslint-plugin-unicorn": "57.0.0",
-    "husky": "9.1.7",
-    "lint-staged": "15.5.0",
-    "prettier": "3.5.3",
     "serve": "14.2.4",
-    "serve-handler": "6.1.6",
-    "typescript": "5.7.2"
+    "serve-handler": "6.1.6"
   },
   "dependencies": {
     "@sitespeed.io/plugin": "1.0.0",
     "@sitespeed.io/log": "0.2.6"
   },
   "scripts": {
-    "test": "ava",
     "start-server": "serve test/data/",
     "stop-server": "sudo pkill serve",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check"
+    "lint:fix": "eslint . --fix"
   },
   "main": "./lib/index.js"
 }
