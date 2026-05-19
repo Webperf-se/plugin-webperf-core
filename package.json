@@ -32,7 +32,7 @@
     "@eslint/js": "10.0.1",
 
     "serve": "14.2.6",
-    "serve-handler": "6.1.6"
+    "serve-handler": "6.1.7"
   },
   "dependencies": {
     "@sitespeed.io/plugin": "1.0.0",
