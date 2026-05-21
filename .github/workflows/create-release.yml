@@ -10,6 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # behövs för GitHub Release-steget
+      id-token: write   # behövs för npm OIDC (trusted publishing)
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -18,8 +21,8 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.x" # Version range or exact version of a Python version to use, using SemVer's version range syntax
-          architecture: "x64" # optional x64 or x86. Defaults to x64 if not specified
+          python-version: "3.x"
+          architecture: "x64"
       - name: Setup dependencies using pip
         run: pip install -r requirements.txt
       - name: 📋 Get Commits since last Release
@@ -37,7 +40,12 @@ jobs:
           tag_name: "${{ env.NEW_VERSION }}"
           make_latest: "true"
           generate_release_notes: true
-      - name: NPM Release (version specific)
-        uses: JS-DevTools/npm-publish@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          token: ${{ secrets.NPM_TOKEN }}
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+      - name: Upgrade npm (krävs för trusted publishing)
+        run: npm install -g npm@latest
+      - name: NPM Release
+        run: npm publish
