@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@sitespeed.io/plugin": "1.0.0",
-    "@sitespeed.io/log": "1.0.0"
+    "@sitespeed.io/log": "2.0.0"
   },
   "scripts": {
     "start-server": "serve test/data/",
