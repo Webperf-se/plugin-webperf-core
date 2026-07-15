@@ -15,7 +15,7 @@ jobs:
       id-token: write   # behövs för npm OIDC (trusted publishing)
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0 # [!] we need to checkout with tags and commit history
       - name: Setup python
