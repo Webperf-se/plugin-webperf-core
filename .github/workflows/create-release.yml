@@ -15,11 +15,11 @@ jobs:
       id-token: write   # behövs för npm OIDC (trusted publishing)
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0 # [!] we need to checkout with tags and commit history
       - name: Setup python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: "3.x"
           architecture: "x64"
@@ -41,9 +41,9 @@ jobs:
           make_latest: "true"
           generate_release_notes: true
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
-          node-version: "22"
+          node-version: "24"
           registry-url: "https://registry.npmjs.org"
       - name: Upgrade npm (krävs för trusted publishing)
         run: npm install -g npm@latest
